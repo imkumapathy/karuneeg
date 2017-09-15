@@ -1,0 +1,13 @@
+﻿<div class="navbar">
+    <ul class="nav navbar-nav">
+        <li ng-class="navClass('home')"><a href='' ng-click="$ctrl.loadHome()">Home</a></li>
+        <li ng-class="navClass('about')"><a href='' ng-click="$ctrl.loadGroom()">BrideGroom</a></li>
+        <li ng-class="navClass('contact')"><a href='' ng-click="$ctrl.loadContact()">Contact Us</a></li>
+    </ul>
+</div>
+<p  ng-if="$ctrl.groom">testtest</p>
+<groom-Engineer ng-if="$ctrl.groom"></groom-Engineer>
+<input type="text" ng-model="$ctrl.food" placeholder="Enter food" />
+
+<p>Sriracha sauce is great with {{$ctrl.food}}!</p>
+

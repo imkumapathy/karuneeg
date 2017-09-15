@@ -2,12 +2,11 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('karuneegar')
         .controller('Main', main);
 
     function main() {
-        var vm = this;
-        vm.food = 'pizza';
+    
     }
 
 })();
