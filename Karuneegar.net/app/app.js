@@ -1,6 +1,6 @@
 var Karuneegar;
 (function (Karuneegar) {
-    Karuneegar.app = angular.module("karuneegar", ["ui.router", "ui.grid"]);
+    Karuneegar.app = angular.module("karuneegar", ["ui.router", "ui.grid", 'localytics.directives']);
     Karuneegar.app.config([
         "$stateProvider", "$urlRouterProvider", "$locationProvider",
         function ($stateProvider, $urlRouterProvider, $locationProvider) {

@@ -2,7 +2,7 @@
     import StateProvider = angular.ui.IStateProvider;
     import UrlRouterProvider = angular.ui.IUrlRouterProvider;
     import LocationProvider = angular.ILocationProvider;
-    export var app = angular.module("karuneegar", ["ui.router", "ui.grid"]);
+    export var app = angular.module("karuneegar", ["ui.router", "ui.grid", 'localytics.directives']);
 
     app.config([
         "$stateProvider", "$urlRouterProvider", "$locationProvider",
