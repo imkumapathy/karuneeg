@@ -1,43 +1,59 @@
-﻿<!--<div class="navbar">
-    <ul class="nav navbar-nav">
-        <li ng-class="navClass('home')"><a href='' ng-click="$ctrl.loadHome()">Home</a></li>
-        <li ng-class="navClass('about')"><a href='' ng-click="$ctrl.loadGroom()">BrideGroom</a></li>
-        <li ng-class="navClass('contact')"><a href='' ng-click="$ctrl.loadContact()">Contact Us</a></li>
-    </ul>
-</div>
-<p ng-if="$ctrl.groom">testtest</p>
-<groom-Engineer ng-if="$ctrl.groom"></groom-Engineer>
-<input type="text" ng-model="$ctrl.food" placeholder="Enter food" />
+﻿<div style="width: 98%; margin-left: 1%; height:100%;">
+    <nav class="navbar styleNavbar navbar-inverse" style="margin-bottom:0px !important">
 
-<p>Sriracha sauce is great with {{$ctrl.food}}!</p>-->
-<!--<div style="height:10%;">
-
-</div>-->
-<nav class="navbar styleNavbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Karuneegar Sabha</a>
+        <div class="container-fluid" style="background:#FFD700;height:50px;">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" style="color:crimson;font-size:10px;">அருட்பெருஞ்ஜோதி அருட்பெருஞ்ஜோதி</a>
+            </div>
+            <div style="display: block; position: absolute; height: 100%; width: 100%;">
+                <img src="Content/images/candle.gif" style="height:100px;width:100px;display: block;margin-left: auto;margin-right: auto;" />
+            </div>
+            <div class="navbar-header navbar-right">
+                <a class="navbar-brand" href="#" style="color:crimson;font-size:10px;">தனிப்பெருங்கருணை அருட்பெருஞ்ஜோதி</a>
+            </div>
         </div>
-        <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="#" ng-click="$ctrl.loadHome()">Home</a></li>
-            <li>
-                <a href="#" ng-click="$ctrl.loadGroom()"> Groom</a>
-            </li>
-            <li>
-                <a href="#" ng-click="$ctrl.loadBride()"> Bride Groom</a>
-            </li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </div>
-</nav>
-<div style="display:flex; overflow-y: auto;height:90%">
 
-    <div layout="column" style="flex:1;height:90%;">
-        <div style="height:95%;">
-            <home-Page ng-if="$ctrl.loadHomePage"></home-Page>
-            <groom data="$ctrl.groomData" stars="$ctrl.starTypes" ng-if="$ctrl.loadGroomPage"></groom>
-            <bride data="$ctrl.brideData" stars="$ctrl.starTypes" ng-if="$ctrl.loadBridePage"></bride>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    Karuneegar Sabha
+                </a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-class="{active : $ctrl.activeMenu === 'Home'}"><a href="#" ng-click="$ctrl.loadHome()">Home</a></li>
+                <!--<li ng-class="{active : $ctrl.activeMenu === 'Groom'}">
+                    <a href="#" ng-click="$ctrl.loadGroom()"> Groom</a>
+                </li>-->
+                <li ng-class="{active : $ctrl.activeMenu === 'Matrimony'}">
+                    <a href="#/matrimony" ng-click="$ctrl.loadMatrimony()"> Matrimony</a>
+                </li>
+                <li ng-class="{active : $ctrl.activeMenu === 'About'}"><a href="#/aboutus">About Us</a></li>
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle">
+                        <i class="fa fa-bars fa-lg" aria-hidden="true" style="cursor:pointer;"></i>
+                        <!--<b class="caret"></b>-->
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Other</a></li>
+                        <li><a href="#">Other</a></li>
+                        <li><a href="#">Items</a></li>
+                        <li><a href="#">Items</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+
+    </nav>
+
+    <div style="display:flex; overflow-y: auto;height:80%">
+        <div layout="column" style="flex:1;height:100%;">
+            <div style="height:95%;">
+
+                <home-Page ng-if="$ctrl.loadHomePage"></home-Page>
+                <matrimony ng-if="$ctrl.loadMatrimonyPage"></matrimony>
+                <matrimony-Search isbride="$ctrl.isBride" ng-if="$ctrl.loadMatrimonySearchPage"></matrimony-Search>
+            </div>
         </div>
     </div>
 </div>

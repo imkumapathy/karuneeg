@@ -33,3 +33,4 @@ var Karuneegar;
         Karuneegar.app.controller("GroomController", GroomController);
     })(Home = Karuneegar.Home || (Karuneegar.Home = {}));
 })(Karuneegar || (Karuneegar = {}));
+//# sourceMappingURL=groom.controller.js.map

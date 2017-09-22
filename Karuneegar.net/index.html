@@ -2,36 +2,45 @@
 
 <html ng-app="karuneegar">
 <head>
-    <title>test</title>
-    <base href="/karuneegar.net/" />
+    <title>karuneegar</title>
+    <base href="/karuneegar/" />
 </head>
-<body>
+<body style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;">
 
-    <home style="height:100%"></home>
+    <!--<home style="height:100%; width:98%;"></home>-->
 
+    <ui-view>
+       
+    </ui-view>
+    
+    
+    <link href="Content/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="Content/styles/style.css" rel="stylesheet" />
     <link href="Content/ui-grid.min.css" rel="stylesheet" />
     <link href="Content/choosen/choosen.min.css" rel="stylesheet" />
+
     <script src="Scripts/jquery-1.9.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/angular.min.js"></script>
     <script src="Scripts/ui-grid.min.js"></script>
-    <script src="Scripts/angular-ui-router.min.js"></script>
+    <script src="Scripts/angular-route.min.js"></script>
+    <script src="Scripts/angular-ui-router.js"></script>
+    <!--<script src="Scripts/angular-ui-router.min.js"></script>-->
     <script src="Scripts/choosen/choosen.jquery.min.js"></script>
     <script src="Scripts/choosen/choosen.js"></script>
 
     <script src="app/app.js"></script>
-    <script src="app/main.js"></script>
+    <!--<script src="app/main.js"></script>-->
 
     <script src="app/services/dataservices.js"></script>
     <script src="app/home/home.component.js"></script>
     <script src="app/home/home.controller.js"></script>
     <script src="app/home/homePage/homePage.component.js"></script>
     <script src="app/home/homePage/homePage.controller.js"></script>
-    <script src="app/groom/groom.component.js"></script>
-    <script src="app/groom/groom.controller.js"></script>
-    <script src="app/bride/bride.component.js"></script>
-    <script src="app/bride/bride.controller.js"></script>
+    <script src="app/matrimony/matrimony.component.js"></script>
+    <script src="app/matrimony/matrimony.controller.js"></script>
+    <script src="app/matrimony/matrimonySearch/matrimonySearch.component.js"></script>
+    <script src="app/matrimony/matrimonySearch/matrimonySearch.controller.js"></script>
 </body>
 </html>

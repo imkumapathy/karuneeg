@@ -1,7 +1,9 @@
 ﻿module Karuneegar.Home {
     import HttpService = angular.IHttpService;
-    export class BrideController implements ng.IComponentController {
-        static $inject = ["$http"];
+    import DataService = Karuneegar.DataService.IKaruneegarDataService;
+
+    export class MatrimonySearchController implements ng.IComponentController {
+        static $inject = ["KaruneegarDataService", "$state"];
         tools: any[];
         brideGridOptions: any;
         data: any;
@@ -9,11 +11,32 @@
         brideStars: any = [];
         fromDate: any;
         endDate: any;
-        constructor(private $http: HttpService) {
+        isbride: boolean;
+
+        constructor(private karuneegarDataService: DataService, private $state: angular.ui.IStateService) {
 
         }
 
         initalSetup() {
+            let instance = this;
+            if (this.isbride) {
+                this.karuneegarDataService.getBrideDetails().then(function (response) {
+                    instance.brideGridOptions.data = response.feed.entry;
+                    instance.data = response.feed.entry;
+                    console.log("bride data...");
+                    console.log(response.feed.entry);
+                });
+            }
+            else {
+                this.karuneegarDataService.getGroomDetails().then(function (response) {
+                    instance.brideGridOptions.data = response.feed.entry;
+                    instance.data = response.feed.entry;
+                    console.log("groom data...");
+                    console.log(response.feed.entry);
+                });
+            }
+            this.stars = this.karuneegarDataService.getStars();
+
         }
 
         updateData() {
@@ -26,7 +49,7 @@
                     if (instance.brideStars.indexOf(details.gsx$star.$t) > -1) {
                         return details;
                     };
-                });               
+                });
             }
 
             //date filter
@@ -52,6 +75,7 @@
         }
 
         $onInit() {
+
             this.brideGridOptions = {
                 enableSorting: true,
                 columnDefs: [
@@ -60,11 +84,12 @@
                     { name: 'Education', field: 'gsx$education.$t' },
                     { name: 'Date Of Birth', field: 'gsx$dob.$t' },
                     { name: 'Description', field: 'gsx$description.$t' },
-                ],
-                data: this.data
+                    { name: 'Reference Number', field:'gsx$diarynumber.$t'}
+                ]
             };
+            this.initalSetup();
         }
     }
 
-    app.controller("BrideController", BrideController);
+    app.controller("MatrimonySearchController", MatrimonySearchController);
 }

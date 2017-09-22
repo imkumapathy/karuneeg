@@ -14,14 +14,14 @@ var Karuneegar;
                     "Tiruvonam", "Uthiradam", "Uthiram", "Uttrattadhi", "Visakam"];
                 return stars;
             };
-            KaruneegarDataService.prototype.getBrideDetails = function () {
-                var instance = this;
-                return this.$http.get(instance.brideUrl)
-                    .then(function (response) { return response.data; });
-            };
             KaruneegarDataService.prototype.getGroomDetails = function () {
                 var instance = this;
                 return this.$http.get(instance.groomUrl)
+                    .then(function (response) { return response.data; });
+            };
+            KaruneegarDataService.prototype.getBrideDetails = function () {
+                var instance = this;
+                return this.$http.get(instance.brideUrl)
                     .then(function (response) { return response.data; });
             };
             return KaruneegarDataService;
@@ -30,3 +30,4 @@ var Karuneegar;
         Karuneegar.app.service("KaruneegarDataService", KaruneegarDataService);
     })(DataService = Karuneegar.DataService || (Karuneegar.DataService = {}));
 })(Karuneegar || (Karuneegar = {}));
+//# sourceMappingURL=dataservices.js.map

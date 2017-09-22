@@ -16,3 +16,4 @@ var Karuneegar;
         Karuneegar.app.component("groom", new GroomComponent());
     })(Home = Karuneegar.Home || (Karuneegar.Home = {}));
 })(Karuneegar || (Karuneegar = {}));
+//# sourceMappingURL=groom.component.js.map

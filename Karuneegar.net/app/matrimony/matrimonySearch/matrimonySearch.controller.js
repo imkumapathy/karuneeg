@@ -2,14 +2,33 @@ var Karuneegar;
 (function (Karuneegar) {
     var Home;
     (function (Home) {
-        var BrideController = (function () {
-            function BrideController($http) {
-                this.$http = $http;
+        var MatrimonySearchController = (function () {
+            function MatrimonySearchController(karuneegarDataService, $state) {
+                this.karuneegarDataService = karuneegarDataService;
+                this.$state = $state;
                 this.brideStars = [];
             }
-            BrideController.prototype.initalSetup = function () {
+            MatrimonySearchController.prototype.initalSetup = function () {
+                var instance = this;
+                if (this.isbride) {
+                    this.karuneegarDataService.getBrideDetails().then(function (response) {
+                        instance.brideGridOptions.data = response.feed.entry;
+                        instance.data = response.feed.entry;
+                        console.log("bride data...");
+                        console.log(response.feed.entry);
+                    });
+                }
+                else {
+                    this.karuneegarDataService.getGroomDetails().then(function (response) {
+                        instance.brideGridOptions.data = response.feed.entry;
+                        instance.data = response.feed.entry;
+                        console.log("groom data...");
+                        console.log(response.feed.entry);
+                    });
+                }
+                this.stars = this.karuneegarDataService.getStars();
             };
-            BrideController.prototype.updateData = function () {
+            MatrimonySearchController.prototype.updateData = function () {
                 var instance = this;
                 var updatedData = this.data;
                 //star filter
@@ -40,7 +59,7 @@ var Karuneegar;
                 }
                 instance.brideGridOptions.data = updatedData;
             };
-            BrideController.prototype.$onInit = function () {
+            MatrimonySearchController.prototype.$onInit = function () {
                 this.brideGridOptions = {
                     enableSorting: true,
                     columnDefs: [
@@ -49,14 +68,16 @@ var Karuneegar;
                         { name: 'Education', field: 'gsx$education.$t' },
                         { name: 'Date Of Birth', field: 'gsx$dob.$t' },
                         { name: 'Description', field: 'gsx$description.$t' },
-                    ],
-                    data: this.data
+                        { name: 'Reference Number', field: 'gsx$diarynumber.$t' }
+                    ]
                 };
+                this.initalSetup();
             };
-            return BrideController;
+            return MatrimonySearchController;
         }());
-        BrideController.$inject = ["$http"];
-        Home.BrideController = BrideController;
-        Karuneegar.app.controller("BrideController", BrideController);
+        MatrimonySearchController.$inject = ["KaruneegarDataService", "$state"];
+        Home.MatrimonySearchController = MatrimonySearchController;
+        Karuneegar.app.controller("MatrimonySearchController", MatrimonySearchController);
     })(Home = Karuneegar.Home || (Karuneegar.Home = {}));
 })(Karuneegar || (Karuneegar = {}));
+//# sourceMappingURL=matrimonySearch.controller.js.map

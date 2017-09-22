@@ -13,3 +13,4 @@ var Karuneegar;
         Karuneegar.app.component("home", new HomeComponent());
     })(Home = Karuneegar.Home || (Karuneegar.Home = {}));
 })(Karuneegar || (Karuneegar = {}));
+//# sourceMappingURL=home.component.js.map

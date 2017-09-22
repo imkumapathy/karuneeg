@@ -1,60 +1,90 @@
 ﻿module Karuneegar.Home {
     import HttpService = angular.IHttpService;
     import DataService = Karuneegar.DataService.IKaruneegarDataService;
+    import StateService = angular.ui.IStateService;
     export class HomeController implements ng.IComponentController {
-        static $inject = ["$http", "KaruneegarDataService"];
+        static $inject = ["$http", "$state"];
 
-        constructor(private $http: HttpService, private karuneegarDataService: DataService) {
+        constructor(private $http: HttpService, private $state: StateService) {
         }
 
-
+        activeMenu = "Home";
         loadHomePage = true;
-        loadGroomPage = false;
-        loadBridePage = false;
+        loadMatrimonyPage = false;
+        loadAboutUsPage = false;
+        loadContactPage = false;
+        loadMatrimonySearchPage = false;
+        isBride = false;
         brideData: any;
         groomData: any;
-
+        showMenuItem = false;
         starTypes: string[];
 
-        $onInit() {
-            let instance = this;
-            this.karuneegarDataService.getBrideDetails().then(function (response) {
-                instance.brideData = response.feed.entry;
-                console.log("bride data...");
-                console.log(instance.brideData);
-            });
-
-            this.karuneegarDataService.getGroomDetails().then(function (response) {
-                instance.groomData = response.feed.entry;
-                console.log("groom data...");
-                console.log(instance.groomData);
-            });
-
-            this.starTypes = this.karuneegarDataService.getStars();
-            console.log("star types...");
-            console.log(this.starTypes);
+        $onInit() {                     
+            this.processCurrentState();
         }
 
-        loadGroom() {
-            this.loadDefaultValue();
-            this.loadGroomPage = true;
-        }
+        processCurrentState() {
+            let currentState = this.$state.current;
+            if (currentState.name == "matrimony") {
+                this.loadMatrimony();
+            }
+            else if (currentState.name == "aboutus") {
+                this.loadAboutUs();
+            }
+            else if (currentState.name == "matrimony/groom") {
+                this.loadMatrimonySearch();
+                this.isBride = false;
 
-        loadBride() {
+            }
+            else if (currentState.name == "matrimony/bride") {
+                this.loadMatrimonySearch();
+                this.isBride = true;
+            }
+            else {
+                this.loadHome();
+            }
+        }
+      
+        loadMatrimony() {
             this.loadDefaultValue();
-            this.loadBridePage = true;
+            this.loadMatrimonyPage = true;
+            this.activeMenu = "Matrimony";
         }
 
         loadHome() {
             this.loadDefaultValue();
             this.loadHomePage = true;
+            this.activeMenu = "Home";
 
         }
 
+        loadAboutUs() {
+            this.loadDefaultValue();
+            this.activeMenu = "About";
+            this.loadAboutUsPage = true;
+        }
+
+        loadContact() {
+            this.loadDefaultValue();
+            this.activeMenu = "Contact";
+            this.loadContactPage = true;
+        }
+
         loadDefaultValue() {
-            this.loadGroomPage = false;
             this.loadHomePage = false;
-            this.loadBridePage = false;
+            this.loadMatrimonyPage = false;
+            this.loadMatrimonySearchPage = false;
+        }
+
+        loadMatrimonySearch() {
+            this.loadDefaultValue();
+            this.loadMatrimonySearchPage = true;
+            this.activeMenu = "Matrimony";
+        }
+
+        menuClick() {
+            this.showMenuItem = !this.showMenuItem;
         }
     }
 

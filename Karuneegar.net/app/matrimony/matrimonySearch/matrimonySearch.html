@@ -1,0 +1,20 @@
+﻿<div style="display:flex;height:100%">
+    <div class="well well-lg" style="flex:0.15;height:100%;">
+
+        <h4>Filters:</h4>
+        <div>
+            <h6 style="font-weight:bold;">Star Type:</h6>
+            <select chosen multiple ng-model="$ctrl.brideStars"
+                    ng-options="value for value in $ctrl.stars" ng-change="$ctrl.updateData()"></select>
+            <h6 style="font-weight:bold;">Date Of Birth Range:</h6>
+            <h6 style="font-weight:bold;">From:</h6>
+            <input type="date" ng-model="$ctrl.fromDate" ng-change="$ctrl.updateData()" style="width:100%" />
+            <h6 style="font-weight:bold;">To:</h6>
+            <input type="date" ng-model="$ctrl.endDate" ng-change="$ctrl.updateData()" style="width:100%" />
+        </div>
+    </div>
+    <div class="well well-lg" style="flex:1;height:100%">
+        <div ui-grid="$ctrl.brideGridOptions" class="tableGrid"></div>
+        <div>Please note down the reference number and contact us...</div>
+    </div>
+</div>

@@ -25,16 +25,19 @@
             return stars;
         }
 
-        getBrideDetails(): Promise<any> {
-            let instance = this;
-            return this.$http.get(instance.brideUrl)
-                .then(response => response.data);
-        }
-
         getGroomDetails(): Promise<any> {
             let instance = this;
             return this.$http.get(instance.groomUrl)
                 .then(response => response.data);
+        }
+
+
+        getBrideDetails(): Promise<any> {
+
+            let instance = this;
+            return this.$http.get(instance.brideUrl)
+                .then(response => response.data);
+
         }
 
     }

@@ -15,3 +15,4 @@ var Karuneegar;
         Karuneegar.app.controller("HomePageController", HomePageController);
     })(Home = Karuneegar.Home || (Karuneegar.Home = {}));
 })(Karuneegar || (Karuneegar = {}));
+//# sourceMappingURL=homePage.controller.js.map

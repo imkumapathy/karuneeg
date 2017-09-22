@@ -3,50 +3,79 @@ var Karuneegar;
     var Home;
     (function (Home) {
         var HomeController = (function () {
-            function HomeController($http, karuneegarDataService) {
+            function HomeController($http, $state) {
                 this.$http = $http;
-                this.karuneegarDataService = karuneegarDataService;
+                this.$state = $state;
+                this.activeMenu = "Home";
                 this.loadHomePage = true;
-                this.loadGroomPage = false;
-                this.loadBridePage = false;
+                this.loadMatrimonyPage = false;
+                this.loadAboutUsPage = false;
+                this.loadContactPage = false;
+                this.loadMatrimonySearchPage = false;
+                this.isBride = false;
+                this.showMenuItem = false;
             }
             HomeController.prototype.$onInit = function () {
-                var instance = this;
-                this.karuneegarDataService.getBrideDetails().then(function (response) {
-                    instance.brideData = response.feed.entry;
-                    console.log("bride data...");
-                    console.log(instance.brideData);
-                });
-                this.karuneegarDataService.getGroomDetails().then(function (response) {
-                    instance.groomData = response.feed.entry;
-                    console.log("groom data...");
-                    console.log(instance.groomData);
-                });
-                this.starTypes = this.karuneegarDataService.getStars();
-                console.log("star types...");
-                console.log(this.starTypes);
+                this.processCurrentState();
             };
-            HomeController.prototype.loadGroom = function () {
-                this.loadDefaultValue();
-                this.loadGroomPage = true;
+            HomeController.prototype.processCurrentState = function () {
+                var currentState = this.$state.current;
+                if (currentState.name == "matrimony") {
+                    this.loadMatrimony();
+                }
+                else if (currentState.name == "aboutus") {
+                    this.loadAboutUs();
+                }
+                else if (currentState.name == "matrimony/groom") {
+                    this.loadMatrimonySearch();
+                    this.isBride = false;
+                }
+                else if (currentState.name == "matrimony/bride") {
+                    this.loadMatrimonySearch();
+                    this.isBride = true;
+                }
+                else {
+                    this.loadHome();
+                }
             };
-            HomeController.prototype.loadBride = function () {
+            HomeController.prototype.loadMatrimony = function () {
                 this.loadDefaultValue();
-                this.loadBridePage = true;
+                this.loadMatrimonyPage = true;
+                this.activeMenu = "Matrimony";
             };
             HomeController.prototype.loadHome = function () {
                 this.loadDefaultValue();
                 this.loadHomePage = true;
+                this.activeMenu = "Home";
+            };
+            HomeController.prototype.loadAboutUs = function () {
+                this.loadDefaultValue();
+                this.activeMenu = "About";
+                this.loadAboutUsPage = true;
+            };
+            HomeController.prototype.loadContact = function () {
+                this.loadDefaultValue();
+                this.activeMenu = "Contact";
+                this.loadContactPage = true;
             };
             HomeController.prototype.loadDefaultValue = function () {
-                this.loadGroomPage = false;
                 this.loadHomePage = false;
-                this.loadBridePage = false;
+                this.loadMatrimonyPage = false;
+                this.loadMatrimonySearchPage = false;
+            };
+            HomeController.prototype.loadMatrimonySearch = function () {
+                this.loadDefaultValue();
+                this.loadMatrimonySearchPage = true;
+                this.activeMenu = "Matrimony";
+            };
+            HomeController.prototype.menuClick = function () {
+                this.showMenuItem = !this.showMenuItem;
             };
             return HomeController;
         }());
-        HomeController.$inject = ["$http", "KaruneegarDataService"];
+        HomeController.$inject = ["$http", "$state"];
         Home.HomeController = HomeController;
         Karuneegar.app.controller("HomeController", HomeController);
     })(Home = Karuneegar.Home || (Karuneegar.Home = {}));
 })(Karuneegar || (Karuneegar = {}));
+//# sourceMappingURL=home.controller.js.map
